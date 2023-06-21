@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>JuClinical</title>
+    <link rel="icon" href="{{ url_for('static', filename='images/top_image.png') }}">
+  </head>
+  <body>
+    <h1>Data Loading</h1>
+    <form method="post" action="/" enctype="multipart/form-data">
+      <input type="file" name="file" id="file" required>
+      <br>
+      <h2>Run Model</h2>
+      <label for="model">Select a model:</label>
+      <br>
+      <select name="model" id="model">
+        <option value="model_admission">Admission Model</option>
+        <option value="model_cascade">Cascade Model</option>
+        <option value="model_24hs">24hs Model</option>
+      </select>
+      <br>
+      <button type="submit">Run model</button>
+      <br>
+    </form>
+    {% if error %}
+      <p style="color: red;">{{ error }}</p>
+    {% endif %}
+    <h2>Inspect data</h2>
+    <form action="/data_show" method="post">
+      <input type="hidden" name="inspect_data" value="true">
+      <button type="submit">Inspect Data</button>
+    </form>
+  </body>
+</html>

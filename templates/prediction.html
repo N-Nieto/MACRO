@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Predictions</title>
+    <link rel="icon" href="{{ url_for('static', filename='images/top_image.png') }}">
+    <style>
+      .no-risk {
+        color: #008000; /* Dark green */
+      }
+
+      .uncertain {
+        color: #FFD700; /* Yellow */
+      }
+
+      .risk {
+        color: #8B0000; /* Dark red */
+      }
+    </style>
+  </head>
+  <body>
+    
+    <h1>Results</h1>
+    <h2>Download predictions as .csv</h2>
+    <form action="{{ url_for('download') }}" method="post">
+        {% for index in range(patient_id|length) %}
+            <input type="hidden" name="patient_id" value="{{ patient_id[index] }}">
+            <input type="hidden" name="probability" value="{{ probabilities[index] }}">
+            <input type="hidden" name="risk_category" value="{{ risk_categories[index] }}">
+        {% endfor %}
+        <input type="submit" value="Download Results as CSV">
+    </form>
+    <form action="/return" method="post">
+        <input type="submit" value="Return">
+    </form>
+
+    <h2>Quick View</h2>
+    <table>
+      <tr>
+          <th>Patient ID</th>
+          <th>Risk Probability</th>
+          <th>Risk Category</th>
+      </tr>
+      {% for index in range(patient_id|length) %}
+      <tr>
+          <td>{{ patient_id[index] }}</td>
+          <td>{{ '%.2f%%' % (probabilities[index] * 100) }}</td>
+          <td class="{% if risk_categories[index] == 'No Risk' %}no-risk{% elif risk_categories[index] == 'Uncertain' %}uncertain{% else %}risk{% endif %}">{{ risk_categories[index] }}</td>
+      </tr>
+      {% endfor %}
+  </table>
+
+  <br>
+
+  <!-- Button to go back to the top of the page -->
+  <button onclick="scrollToTop()">Go to Top</button>
+
+  <script>
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  </script>
+
+  </body>
+</html>

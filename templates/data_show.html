@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Data Show</title>
+    <link rel="icon" href="{{ url_for('static', filename='images/top_image.png') }}">
+  </head>
+  <body>
+    <h1>Data Show</h1>
+    <form action="/return" method="post">
+        <input type="submit" value="Return to principal">
+    </form>
+    <table>
+      <tr>
+        {% for column in df.columns %}
+          <th>{{ column }}</th>
+        {% endfor %}
+      </tr>
+      {% for row in df.values %}
+        <tr>
+          {% for value in row %}
+            <td>{{ value }}</td>
+          {% endfor %}
+        </tr>
+      {% endfor %}
+    </table>
+  <!-- Button to go back to the top of the page -->
+  <button onclick="scrollToTop()">Go to Top</button>
+
+  <script>
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  </script>
+  </body>
+</html>
+

@@ -1,0 +1,24 @@
+{% extends 'layouts/base.html' %}
+{% block content %}
+<!-- [ Main Content ] start -->
+<div class="row">
+    <!-- order-card start -->
+    <div class="col-md-12 col-xl-12">
+        <div class="card bg-c-blue order-card">
+            <div class="card-body">
+                <h6 class="text-white">Welcome to JuClinical</h6>
+                <p class="m-b-0">TODO: Explaination on what it is<span class="float-end"></span></p>
+
+                <p class="m-b-0">Please follow the steps on the sidebar<span class="float-end"></span></p>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- [ Main Content ] end -->
+{% endblock content %}
+{% block extrajs %}
+<!-- custom-chart js -->
+<script src="{{url_for('static', filename= 'assets/js/pages/dashboard-main.js')}}"></script>
+<!-- Apex Chart -->
+<script src="{{url_for('static', filename= 'assets/js/plugins/apexcharts.min.js')}}"></script>
+{% endblock extrajs %}

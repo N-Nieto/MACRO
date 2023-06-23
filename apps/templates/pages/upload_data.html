@@ -1,0 +1,37 @@
+{% extends 'layouts/base.html' %}
+{% block content %}
+<!-- [ Main Content ] start -->
+<!-- [ breadcrumb ] start -->
+<div class="page-header">
+    <div class="page-block">
+        <div class="row align-items-center">
+            <div class="col-md-12">
+                <div class="page-header-title">
+                    <h5 class="m-b-10">Upload a CSV File</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- [ breadcrumb ] end -->
+<div class="row">
+    <!-- [ basic-table ] start -->
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h5>Select a CSV file</h5>
+            </div>
+            <div class="card-body table-border-style">
+              <form method="post" action="/upload" enctype="multipart/form-data">
+                <div class="form-group row">
+                  <input type="file" class="custom-file-input" name="file" id="file" required>
+                </div>
+                <button type="submit" class="btn  btn-primary">Next</button>
+              </form>
+            </div>
+        </div>
+    </div>
+    <!-- [ basic-table ] end -->
+</div>
+<!-- [ Main Content ] end -->
+{% endblock content %}

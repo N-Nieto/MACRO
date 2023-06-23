@@ -1,0 +1,46 @@
+{% extends 'layouts/base.html' %}
+{% block content %}
+<!-- [ Main Content ] start -->
+<!-- [ breadcrumb ] start -->
+<div class="page-header">
+    <div class="page-block">
+        <div class="row align-items-center">
+            <div class="col-md-12">
+                <div class="page-header-title">
+                    <h5 class="m-b-10">Upload a CSV File</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- [ breadcrumb ] end -->
+<div class="row">
+    <!-- [ basic-table ] start -->
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h5>Select The models to run</h5>
+            </div>
+            <div class="card-body table-border-style">
+              <form method="post" action="/runmodels" enctype="multipart/form-data">
+                {% for t_mname, t_mspec in models.items() %}
+                  <div class="form-group row">
+                    <div class="col-sm-9">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="{{t_mname}}" {% if t_mname not in valid_models %} disabled{% endif %}>
+                            <label class="form-check-label" for="{{t_mname}}">{{t_mspec.name}}</label>
+                        </div>
+                    </div>
+                  </div>
+                {% endfor %}
+                <div class="form-group row">
+                  <button type="submit" class="btn  btn-primary">Run models</button>
+                </div>
+              </form>
+            </div>
+        </div>
+    </div>
+    <!-- [ basic-table ] end -->
+</div>
+<!-- [ Main Content ] end -->
+{% endblock content %}

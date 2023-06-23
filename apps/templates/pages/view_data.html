@@ -1,0 +1,67 @@
+{% extends 'layouts/base.html' %}
+{% block content %}
+<!-- [ Main Content ] start -->
+<!-- [ breadcrumb ] start -->
+<div class="page-header">
+    <div class="page-block">
+        <div class="row align-items-center">
+            <div class="col-md-12">
+                <div class="page-header-title">
+                    <h5 class="m-b-10">Verify your data</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- [ breadcrumb ] end -->
+<div class="row">
+    <!-- [ basic-table ] end -->
+    <!-- [ table ] start -->
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h5>Uploaded Data</h5>
+            </div>
+            <div class="card-body table-border-style">
+                <div class="table-responsive">
+                    <table id="dataview" class="table table-hover">
+                        <thead>
+                            <tr>
+                            {% for column in session.juclinical_df.columns %}
+                                <th>{{ column }}</th>
+                            {% endfor %}
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for row in session.juclinical_df.values %}
+                            <tr>
+                                {% for value in row %}
+                                <td>{{ value }}</td>
+                                {% endfor %}
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                      </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- [ table ] end -->
+</div>
+<div class="row">
+
+    <div class="card">
+        <div class="card-body">
+            <h6>Verify the data and click on the following button</h5>
+            <input type="button" class="btn btn-primary" value="Continue" onclick="window.location.href='/runmodels'">
+        </div>
+</div>
+<!-- [ Main Content ] end -->
+{% endblock content %}
+{% block extrajs %}
+<script type="text/javascript" language="javascript" class="init">
+$(document).ready(function () {
+    $('#dataview').DataTable();
+});
+</script>
+{% endblock extrajs %}

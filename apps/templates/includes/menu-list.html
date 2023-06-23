@@ -1,0 +1,31 @@
+<ul class="nav pcoded-inner-navbar ">
+  <li class="nav-item pcoded-menu-caption">
+    <label>Step 1</label>
+  </li>
+  <li class="nav-item">
+    <a href="/upload" class="nav-link "><span class="pcoded-micon"><i
+          class="feather icon-table"></i>
+        </span><span class="pcoded-mtext">Upload data</span></a>
+  </li>
+  {% if session.juclinical_df is not none %}
+  <li class="nav-item pcoded-menu-caption">
+    <label>Step 2</label>
+  </li>
+  <li class="nav-item">
+    <a href="/viewdata" class="nav-link "><span class="pcoded-micon"><i
+          class="feather icon-table"></i>
+        </span><span class="pcoded-mtext">Verify data</span></a>
+  </li>
+  {% endif %}
+  {% if session.juclinical_verified is true %}
+  <li class="nav-item pcoded-menu-caption">
+    <label>Step 3</label>
+  </li>
+  <li class="nav-item">
+    <a href="/runmodels" class="nav-link "><span class="pcoded-micon"><i
+          class="feather icon-table"></i>
+        </span><span class="pcoded-mtext">Run models</span></a>
+  </li>
+  {% endif %}
+
+</ul>

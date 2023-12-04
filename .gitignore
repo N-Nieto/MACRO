@@ -1,0 +1,7 @@
+# Ignore flask session
+flask_session/
+
+# Ignore cache
+apps/__pycache__/
+
+__pycache__

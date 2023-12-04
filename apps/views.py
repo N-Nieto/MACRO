@@ -11,6 +11,7 @@ import pandas as pd
 
 # App modules
 from apps import app
+from .models import df_variables
 
 
 # App main route + generic routing
@@ -50,6 +51,21 @@ def upload():
         return redirect(url_for("viewdata"))
 
     return render_template("pages/upload_data.html", session=session)
+
+
+@app.route("/input_manually", methods=["GET", "POST"])
+def input_manually():
+    session["juclinical_df"] = None
+    session["juclinical_verified"] = False
+    if request.method == "POST":
+        # TODO: Verificar que los datos sean correctos
+        df = pd.DataFrame({k: [v] for k, v in request.form.items()})
+        session["juclinical_df"] = df
+        return redirect(url_for("viewdata"))
+
+    return render_template(
+        "pages/input_manually.html", session=session, df_variables=df_variables
+    )
 
 
 @app.route("/viewdata")

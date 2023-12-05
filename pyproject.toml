@@ -47,7 +47,7 @@ dynamic = ["version"]
 Repository = "https://github.com/N-Nieto/JuClinical"
 
 [project.optional-dependencies]
-dev = ["pre-commit"]
+dev = ["pre-commit", "tox"]
 
 ################
 # Tool configs #
@@ -69,7 +69,6 @@ target-version = ["py38", "py39", "py310", "py311"]
 skip = ".git/,*.pyc,*/_build/*"
 count = ""
 quiet-level = 3
-ignore-words = "ignore_words.txt"
 interactive = 0
 builtin = "clear,rare,informal,names,usage,code"
 

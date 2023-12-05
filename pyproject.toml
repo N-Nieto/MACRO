@@ -46,6 +46,9 @@ dynamic = ["version"]
 [project.urls]
 Repository = "https://github.com/N-Nieto/JuClinical"
 
+[project.optional-dependencies]
+dev = ["pre-commit"]
+
 ################
 # Tool configs #
 ################

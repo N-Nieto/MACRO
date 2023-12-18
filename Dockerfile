@@ -1,16 +1,14 @@
-FROM python:3.9
+FROM python:3.11
 
-# set environment variables
-ENV PYTHONDONTWRITEBYTECODE 1
-ENV PYTHONUNBUFFERED 1
+# Copy pyproject.toml
+COPY pyproject.toml pyproject.toml
+COPY .git .git
+COPY macro macro
 
-COPY requirements.txt .
-
-# install python dependencies
+# Install Python dependencies
 RUN pip install --upgrade pip
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir .
 
-COPY . .
-
-# gunicorn
-CMD ["gunicorn", "--config", "gunicorn-cfg.py", "run:app"]
+# Run gunicorn
+COPY gunicorn-cfg.py gunicorn-cfg.py
+CMD ["gunicorn", "--config", "gunicorn-cfg.py", "macro.main:app"]

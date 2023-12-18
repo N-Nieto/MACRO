@@ -3,8 +3,8 @@ requires = ["setuptools>=64", "setuptools_scm>=8"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "JuClinical"
-description = "JuClinical Web"
+name = "MACRO"
+description = "MAchine learning models for early prognosis prediction in CaRdiogenic shOck"
 readme = "README.md"
 requires-python = ">=3.8"
 license = {text = "MIT"}
@@ -46,7 +46,7 @@ dependencies = [
 dynamic = ["version"]
 
 [project.urls]
-Repository = "https://github.com/N-Nieto/JuClinical"
+Repository = "https://github.com/N-Nieto/MACRO"
 
 [project.optional-dependencies]
 dev = ["pre-commit", "tox"]
@@ -61,7 +61,7 @@ packages = ["juclinical"]
 [tool.setuptools_scm]
 version_scheme = "guess-next-dev"
 local_scheme = "no-local-version"
-write_to = "juclinical/_version.py"
+write_to = "macro/_version.py"
 
 [tool.black]
 line-length = 79
@@ -135,7 +135,7 @@ extend-ignore = [
 
 [tool.ruff.isort]
 lines-after-imports = 2
-known-first-party = ["junifer"]
+known-first-party = ["macro"]
 known-third-party =[
     "click",
     "numpy",

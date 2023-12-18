@@ -48,15 +48,15 @@ def upload():
     return render_template("upload.html", form=form)
 
 
-@check_data_found
 @app.route("/viewdata")
+@check_data_found
 def viewdata():
     """Route for data view."""
     return render_template("view.html")
 
 
-@check_data_found
 @app.route("/runmodels")
+@check_data_found
 def runmodels():
     """Route for model run."""
     form = RunModelForm()

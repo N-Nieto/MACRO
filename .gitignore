@@ -133,3 +133,5 @@ cython_debug/
 .DS_store
 
 macro/_version.py
+flask_session/
+session/

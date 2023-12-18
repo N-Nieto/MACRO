@@ -1,0 +1,47 @@
+{# RENDER FIELD #}
+{% macro render_field(field) -%}
+
+  <div class="form-floating">
+    {# display error if invalid #}
+    {%- if field.errors %}
+      {{ field(class_='form-control is-invalid') }}
+      <div class="invalid-feedback">
+        {%- for error in field.errors %}
+          <span>{{ error }}</span>
+        {%- endfor %}
+      </div>
+    {# display field #}
+    {%- else %}
+      {{ field(class_='form-control') }}
+    {%- endif -%}
+    {{ field.label(**kwargs) |safe  }}
+  </div>
+
+{%- endmacro %}
+
+{# RENDER FILE FIELD #}
+{% macro render_file_field(field) -%}
+
+  <div>
+    {# display error if invalid #}
+    {%- if field.errors %}
+      {{ field(class_='form-control is-invalid') }}
+      <div class="invalid-feedback">
+        {%- for error in field.errors %}
+          <span>{{ error }}</span>
+        {%- endfor %}
+      </div>
+      {# display field #}
+    {%- else %}
+      {{ field(class_='form-control') }}
+    {%- endif -%}
+  </div>
+  
+{%- endmacro %}
+
+{# RENDER SUBMIT #}
+{% macro render_submit(field) -%}
+
+    {{ field(**kwargs) |safe }}
+
+{%- endmacro %}

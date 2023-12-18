@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+{% from "_macros.html" import render_file_field, render_submit %}
+
+{% block title %}Upload data{% endblock %}
+
+{% block content %}
+
+  <div class="d-flex justify-content-center">
+    <div class="card shadow col-6">
+      <div class="card-body">
+        <h5>Select a CSV file</h5>
+        <form method="POST"
+              enctype="multipart/form-data"
+              action="{{ url_for('upload') }}">
+          {{ form.csrf_token }}
+          <div class="row mb-3">
+            <div class="col">
+              {{ render_file_field(form.csv_file) }}
+            </div> {# col #}
+          </div> {# row #}
+          <div class="row">
+            <div class="col">
+              {{ render_submit(form.submit, class_="btn btn-primary col-3") }}
+            </div> {# col #}
+          </div> {# row #}
+        </form>
+      </div> {# card-body #}
+    </div> {# card #}
+  </div>
+  
+{% endblock %}

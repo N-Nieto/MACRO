@@ -138,15 +138,11 @@ extend-ignore = [
 lines-after-imports = 2
 known-first-party = ["macro"]
 known-third-party =[
-    "click",
-    "numpy",
-    "datalad",
+    "flask",
+    "flask_session",
     "pandas",
-    "nibabel",
-    "nilearn",
-    "sqlalchemy",
-    "yaml",
-    "pytest",
+    "flask_wtf",
+    "wtforms",
 ]
 
 [tool.ruff.mccabe]

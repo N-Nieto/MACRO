@@ -67,8 +67,8 @@
                  href="{{ url_for('.run_models') }}">
                  <i class="bi bi-play px-2"></i>Run model
               </a>
-              <a class="nav-link"
-                 href="#"><i class="bi bi-activity px-2"></i>Model output
+              <a class="nav-link {% if request.path == url_for('.view_output') %}active{% endif %}"
+                 href="{{ url_for('.view_output') }}"><i class="bi bi-activity px-2"></i>Model output
               </a>
             </nav>
           </div> {# col #}

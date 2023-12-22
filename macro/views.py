@@ -88,6 +88,7 @@ def run_models():
     # POST request
     if form.validate_on_submit():
         # TODO: checks and run and stuff
+        return redirect(url_for(".view_output"))
 
     # GET request
     return render_template(
@@ -96,6 +97,14 @@ def run_models():
         models=all_models,
         valid_models=valid_models,
     )
+
+
+@app.route("/view-output")
+@check_data_found
+def view_output():
+    """Route for model output."""
+    # GET request
+    return render_template("view_output.html")
 
 
 # Custom Filter

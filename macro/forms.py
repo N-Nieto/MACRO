@@ -1,8 +1,9 @@
 """Forms for the application."""
 
 from flask_wtf import FlaskForm
-from flask_wtf.file import FileField, FileAllowed, FileRequired
-from wtforms import SubmitField
+from flask_wtf.file import FileAllowed, FileField, FileRequired
+from wtforms import SelectMultipleField, SubmitField
+from wtforms.validators import InputRequired
 
 
 class UploadCsvForm(FlaskForm):
@@ -18,8 +19,12 @@ class UploadCsvForm(FlaskForm):
     submit = SubmitField("Upload")
 
 
-class RunModelForm(FlaskForm):
-    """Class for model run form."""
+class RunModelsForm(FlaskForm):
+    """Class for models run form."""
 
-    # model =
+    models = SelectMultipleField(
+        "Select model(s)",
+        validators=[InputRequired()],
+        render_kw={"placeholder": "Select model(s)"},
+    )
     submit = SubmitField("Run")

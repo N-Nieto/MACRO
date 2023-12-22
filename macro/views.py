@@ -4,8 +4,8 @@ from flask import flash, render_template, redirect, session, url_for
 from io import BytesIO, StringIO
 import pandas as pd
 
+from .forms import RunModelsForm, UploadCsvForm
 from .main import app
-from .forms import UploadCsvForm, RunModelForm
 from .utils import check_data_found
 
 
@@ -57,14 +57,10 @@ def view_data():
 
 @app.route("/run-models", methods=["GET", "POST"])
 @check_data_found
-    # POST request
-    if form.validate_on_submit():
-        return redirect(url_for(".runmodels"))
-
-    # GET request
 def run_models():
     """Route for models run."""
     form = RunModelsForm()
+    # Define all models
     all_models = {
         "model_admission": {
             "name": "Model at Admission",
@@ -80,12 +76,22 @@ def run_models():
             "file": "model_cascade.pkl",
         },
     }
-
     # TODO: Filter invalid models
     valid_models = ["model_admission", "model_24hs", "model_cascade"]
+    # Set dynamic model choices
+    form.models.choices = [
+        (val["file"], val["name"])
+        for key, val in all_models.items()
+        if key in valid_models
+    ]
 
+    # POST request
+    if form.validate_on_submit():
+        # TODO: checks and run and stuff
+
+    # GET request
     return render_template(
-        "run.html",
+        "run_models.html",
         form=form,
         models=all_models,
         valid_models=valid_models,

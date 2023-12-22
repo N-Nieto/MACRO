@@ -9,7 +9,7 @@ from .forms import UploadCsvForm, RunModelForm
 from .utils import check_data_found
 
 
-__all__ = ["index", "upload", "viewdata", "runmodels"]
+__all__ = ["index", "upload_data", "view_data", "run_models"]
 
 
 # 404 ERROR HANDLING
@@ -25,8 +25,8 @@ def index():
     return render_template("index.html")
 
 
-@app.route("/upload", methods=["GET", "POST"])
-def upload():
+@app.route("/upload-data", methods=["GET", "POST"])
+def upload_data():
     """Route for data upload."""
     form = UploadCsvForm()
     # POST request
@@ -36,35 +36,35 @@ def upload():
         # Check if empty file was uploaded
         if f is None or not f_str:
             flash("Empty file uploaded.", "danger")
-            return redirect(url_for(".upload"))
+            return redirect(url_for(".upload_data"))
         # Read the file data as string and parse it
         df = pd.read_csv(StringIO(f_str), index_col=0)
         # TODO: might want to store a file and keep the path here
         # instead of the dataframe
         session["macro_df"] = df
-        return redirect(url_for(".viewdata"))
+        return redirect(url_for(".view_data"))
 
     # GET request
-    return render_template("upload.html", form=form)
+    return render_template("upload_data.html", form=form)
 
 
-@app.route("/viewdata")
+@app.route("/view-data")
 @check_data_found
-def viewdata():
+def view_data():
     """Route for data view."""
-    return render_template("view.html")
+    return render_template("view_data.html")
 
 
-@app.route("/runmodels")
+@app.route("/run-models", methods=["GET", "POST"])
 @check_data_found
-def runmodels():
-    """Route for model run."""
-    form = RunModelForm()
     # POST request
     if form.validate_on_submit():
         return redirect(url_for(".runmodels"))
 
     # GET request
+def run_models():
+    """Route for models run."""
+    form = RunModelsForm()
     all_models = {
         "model_admission": {
             "name": "Model at Admission",

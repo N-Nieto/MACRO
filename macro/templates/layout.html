@@ -55,16 +55,16 @@
           {# SIDEBAR #} 
           <div class="col-md-3 col-lg-2 p-0 bg-body-tertiary border-end rounded-end-3 shadow">
             <nav class="nav nav-pills flex-column gap-2 px-2 py-4">
-              <a class="nav-link {% if request.path == url_for('.upload') %}active{% endif %}"
-                 href="{{ url_for('.upload') }}">
+              <a class="nav-link {% if request.path == url_for('.upload_data') %}active{% endif %}"
+                 href="{{ url_for('.upload_data') }}">
                  <i class="bi bi-upload px-2"></i>Upload data
               </a> 
-              <a class="nav-link {% if request.path == url_for('.viewdata') %}active{% endif %}"
-                 href="{{ url_for('.viewdata') }}">
+              <a class="nav-link {% if request.path == url_for('.view_data') %}active{% endif %}"
+                 href="{{ url_for('.view_data') }}">
                  <i class="bi bi-eye px-2"></i>View uploaded data
               </a>
-              <a class="nav-link {% if request.path == url_for('.runmodels') %}active{% endif %}"
-                 href="{{ url_for('.runmodels') }}">
+              <a class="nav-link {% if request.path == url_for('.run_models') %}active{% endif %}"
+                 href="{{ url_for('.run_models') }}">
                  <i class="bi bi-play px-2"></i>Run model
               </a>
               <a class="nav-link"

@@ -10,10 +10,10 @@ class UploadCsvForm(FlaskForm):
     """Class for CSV upload form."""
 
     csv_file = FileField(
-        "CSV file",
+        "Select CSV file",
         validators=[
             FileRequired(),
-            FileAllowed(["csv"], "Invalid file type.")
+            FileAllowed(["csv"], "Invalid file type."),
         ],
     )
     submit = SubmitField("Upload")

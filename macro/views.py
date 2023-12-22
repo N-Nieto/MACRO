@@ -1,8 +1,9 @@
 """Views for the application."""
 
-from flask import flash, render_template, redirect, session, url_for
-from io import BytesIO, StringIO
+from io import StringIO
+
 import pandas as pd
+from flask import flash, redirect, render_template, session, url_for
 
 from .forms import RunModelsForm, UploadCsvForm
 from .main import app

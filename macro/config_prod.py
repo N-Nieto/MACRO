@@ -1,4 +1,4 @@
-"""Production configuration for the Flask application."""""
+"""Production configuration for the Flask application.""" ""
 
 # Flask
 ENV = "production"

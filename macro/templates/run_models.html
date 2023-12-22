@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+{% from "_macros.html" import render_select_field, render_submit %}
+
+{% block title %}Run models{% endblock %}
+
+{% block content %}
+
+  <div class="d-flex justify-content-center">
+    <div class="card shadow col-6">
+      <div class="card-body">
+        <h5>Select model</h5>
+        <form method="POST"
+              action="{{ url_for('run_models') }}">
+          {{ form.csrf_token }}
+          <div class="row mb-3"> 
+            <div class="col"> 
+              {{ render_select_field(form.models) }} 
+            </div> {# col #} 
+          </div> {# row #} 
+          <div class="row">
+            <div class="col">
+              {{ render_submit(form.submit, class_="btn btn-primary col-3") }}
+            </div> {# col #}
+          </div> {# row #}
+        </form>
+      </div> {# card-body #}
+    </div> {# card #}
+  </div>
+  
+{% endblock %}
+
+{% block scripts %}
+  {{ super() }}
+  <script>
+    $(document).ready(function() { 
+      $("select[name=models]").select2({ 
+        theme: "bootstrap-5",
+      }); 
+    }) 
+  </script>
+  
+{% endblock %}

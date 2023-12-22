@@ -1,22 +1,23 @@
 {% extends "layout.html" %}
-{% from "_macros.html" import render_submit %}
+{% from "_macros.html" import render_file_field, render_submit %}
 
-{% block title %}Run model{% endblock %}
+{% block title %}Upload data{% endblock %}
 
 {% block content %}
 
   <div class="d-flex justify-content-center">
     <div class="card shadow col-6">
       <div class="card-body">
-        <h5>Select model</h5>
+        <h5>Select a CSV file</h5>
         <form method="POST"
-              action="{{ url_for('runmodels') }}">
+              enctype="multipart/form-data"
+              action="{{ url_for('upload_data') }}">
           {{ form.csrf_token }}
-          {# <div class="row mb-3"> #}
-          {#   <div class="col"> #}
-          {#     {{ render_file_field(form.csv_file) }} #}
-          {#   </div> {\# col #\} #}
-          {# </div> {\# row #\} #}
+          <div class="row mb-3">
+            <div class="col">
+              {{ render_file_field(form.csv_file) }}
+            </div> {# col #}
+          </div> {# row #}
           <div class="row">
             <div class="col">
               {{ render_submit(form.submit, class_="btn btn-primary col-3") }}
